@@ -17,7 +17,7 @@ export class Tile{
         this.value = value;
         this.tileElement.textContent = value;
         const bgLightness = 100 - Math.log2(value) * 9;
-        this.tileElement.style.setProperty("--bg-lightness", '${bgLightness}%');
-        this.tileElement.style.setProperty("--text-lightness", '${bgLightness < 50 ? 90 : 10}%');
+        this.tileElement.style.setProperty("--bg-lightness", `${bgLightness}%`);
+        this.tileElement.style.setProperty("--text-lightness", `${bgLightness < 50 ? 90 : 10}%`);
     }
 }
