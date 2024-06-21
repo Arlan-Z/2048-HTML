@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/clear-sans');
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -5,11 +7,39 @@
 }
 
 body{
-    background-color: cadetblue;
+    background-color: rgb(172, 142, 93);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+#scoreboard{
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-block{
+    font-family: 'Clear Sans', sans-serif;
+    font-weight: bold;
+    color: white;
+    display: flex; 
+    justify-content: center;  
+    align-items: center; 
+    background-color: #e2a919;
+    width: 42vmin;
+    margin: 1vmin 1vmin 2.5vmin;
+    border-radius: 1vmin;
+    font-size: 5vmin;
+    height: 10vmin; 
+}
+
+
+.score-block span{
+    margin-left: 1vmin;
 }
 
 #game-board{
@@ -25,13 +55,13 @@ body{
 }
 
 .cell{
-    background-color: #444;
+    background-color: #473425;
     border-radius: 1vmin;
 }
 
 .tile{
-    --y:1;
-    --x:2;
+    --y:0;
+    --x:0;
 
     position: absolute;
     top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)));
@@ -42,9 +72,9 @@ body{
     width: 20vmin;
     height: 20vmin;
     border-radius: 1vmin;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 7.5vmin;
-    font-weight: bold;
+    font-family: 'Clear Sans', sans-serif;
+    font-size: 8vmin;
+    font-weight: bolder;
     background-color: hsl(25, 60%, var(--bg-lightness));
     color: hsl(20, 25%, var(--text-lightness));
     transition: 100ms;

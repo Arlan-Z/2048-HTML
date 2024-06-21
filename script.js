@@ -3,11 +3,17 @@ import {Tile} from "./tile.js";
 
 const gameBoard = document.getElementById("game-board");
 
+var record = 0;
+var score = 0;
+var isGameOver = false;
+
+
 const grid = new Grid(gameBoard);
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 
 setupInputOnce();
+loadRecord();
 
 function setupInputOnce(){
     window.addEventListener("keydown", handleInput, {once: true});
@@ -53,13 +59,15 @@ async function handleInput(event){
                  
     }
 
-
+    updateScore();
     const newTile = new Tile(gameBoard);
     grid.getRandomEmptyCell().linkTile(newTile);
 
     if(!canMoveDown() && !canMoveLeft() && !canMoveRight() && !canMoveUp()){
         await newTile.waitForAnimationEnd();
         alert("Try Again!");
+        isGameOver = true;
+        updateRecord();
         return;
     }
 
@@ -158,4 +166,30 @@ function canMoveInGroup(group){
         const targetCell = group[index - 1];
         return targetCell.canAccept(cell.linkedTile);
     });
+}
+
+
+function updateScore() {
+    if(isGameOver) return;
+    score += 2;
+    document.getElementById('score').textContent = score;
+}
+
+function updateRecord() {
+    if(score > record)localStorage.setItem('record', score);
+    return;
+}
+
+function loadRecord(){
+    const savedRecord = localStorage.getItem('record');
+    if (savedRecord !== null) {
+        document.getElementById('record').textContent = savedRecord;
+        record = savedRecord;
+        return;
+    }
+    else{
+        document.getElementById('record').textContent = 0;
+        record = 0;
+    }
+
 }
